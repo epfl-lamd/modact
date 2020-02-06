@@ -1,0 +1,6 @@
+attrs
+cached_property >= 1.5.1
+numpy
+git+https://github.com/BerkeleyAutomation/python-fcl.git
+rtree
+trimesh

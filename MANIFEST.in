@@ -1,0 +1,2 @@
+include versioneer.py
+include modact/_version.py
