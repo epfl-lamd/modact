@@ -15,15 +15,9 @@ namespace modact {
 
 struct SharedPython
 {
-    unique_ptr<py::scoped_interpreter> guard;
-    py::module pb;
+    py::scoped_interpreter guard{};
+    py::module pb = py::module::import("modact.problems");
 } sp;
-
-void setup(const string module_name)
-{
-    sp.guard = make_unique<py::scoped_interpreter>();
-    sp.pb = py::module::import(module_name.c_str());
-}
 
 py::object get_problem(const string name)
 {

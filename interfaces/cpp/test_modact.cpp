@@ -7,7 +7,6 @@ using namespace std;
 int main(int argc, char** argv)
 {
     string selected_prob;
-    setup("modact.problems");
 
     if (argc > 1) {
         selected_prob = argv[1];
