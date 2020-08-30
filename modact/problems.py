@@ -207,7 +207,7 @@ def get_problem(name, op_set=op_set_2):
     o_name = m.group(1).upper()
     o = OBJECTIVES[o_name]()
 
-    if o_name == "CS":
+    if "T" not in o_name:
         min_t = 0+0.001
     else:
         min_t = min([op.torque for op in op_set])-0.001

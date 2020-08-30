@@ -6,7 +6,7 @@ import modact.problems as pb
 
 class PymopProblem(Problem):
 
-    def __init__(self, function, map_=map):
+    def __init__(self, function, **kwargs):
         
         if isinstance(function, pb.Problem):
             self.fct = function
@@ -22,17 +22,11 @@ class PymopProblem(Problem):
         self.weights = np.array(self.fct.weights)
         self.c_weights = np.array(self.fct.c_weights)
 
-        self.map = map_
-
-        super().__init__(n_var=n_var, n_obj=n_obj, n_constr=n_constr, xl=xl, xu=xu)
+        super().__init__(n_var=n_var, n_obj=n_obj, n_constr=n_constr, xl=xl,
+                         xu=xu, elementwise_evaluation=True, type_var=np.double,
+                         **kwargs)
 
     def _evaluate(self, x, out, *args, **kwargs):
-        f = np.zeros((x.shape[0], self.n_obj))
-        g = np.zeros((x.shape[0], self.n_constr))
-        res = self.map(self.fct, x)
-        for i, fit in enumerate(res):
-            f[i, :], g[i, :] = fit
-        f *= -1*self.weights
-        g *= self.c_weights
-        out["F"] = f
-        out["G"] = g
+        f, g = self.fct(x)
+        out["F"] = np.array(f)*-1*self.weights
+        out["G"] = np.array(g)*self.c_weights

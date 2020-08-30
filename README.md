@@ -4,7 +4,12 @@ Python package for the Multi-Objective Design of electro-mechanical Actuators
 that is used to derive 20 benchmark problems for constrained multi-objective
 optimization.
 
-There is a related publication currently under review.
+For more information about the framework, please refer to the associate
+publication:
+
+C. Picard and J. Schiffmann, “Realistic Constrained Multi-Objective Optimization Benchmark Problems from Design,” IEEE Transactions on Evolutionary Computation, pp. 1–1, 2020, doi: [10.1109/TEVC.2020.3020046](https://ieeexplore.ieee.org/document/9179777).
+
+If you use MODAct in your research, we would appreciate a citation.
 
 ## Installation
 
@@ -60,4 +65,4 @@ Interfaces form different languages (C++ and MATLAB) to python are provided in
 the `interfaces` folder.
 
 The best-known Pareto fronts approximations of the 20 problems can be downloaded
-here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3647916.svg)](https://doi.org/10.5281/zenodo.3647916)
+here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3824302.svg)](https://doi.org/10.5281/zenodo.3824302)
