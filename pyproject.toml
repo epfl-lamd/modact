@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel", "pytest-runner", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "modact"
+dynamic = ["version"]
+description = "Multi-Objective Design of Actuators"
+authors = [
+  { name = "Cyril Picard", email = "cyrilp@mit.edu" }
+]
+readme = "README.md"
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12"
+]
+dependencies = [
+  "attrs",
+  "cached_property>=1.5.1",
+  "networkx",
+  "numpy",
+  "python-fcl",
+  "scipy",
+  "trimesh"
+]
+requires-python = ">=3.8"
+
+[project.urls]
+"Bug Reports" = "https://github.com/epfl-lamd/modact/issues"
+"Source" = "https://github.com/epfl-lamd/modact/"
+"Home" = "https://github.com/epfl-lamd/modact/"
+
+[tool.setuptools]
+packages = ["modact"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+  "--cov=modact",
+  "--cov-report=html:cover",
+  "--cov-report=term"
+]
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "node-and-date"

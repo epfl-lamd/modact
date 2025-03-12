@@ -7,7 +7,7 @@ optimization.
 For more information about the framework, please refer to the associate
 publication:
 
-C. Picard and J. Schiffmann, “Realistic Constrained Multi-Objective Optimization Benchmark Problems from Design,” IEEE Transactions on Evolutionary Computation, pp. 1–1, 2020, doi: [10.1109/TEVC.2020.3020046](https://ieeexplore.ieee.org/document/9179777).
+C. Picard and J. Schiffmann, “Realistic Constrained Multi-Objective Optimization Benchmark Problems from Design,” IEEE Transactions on Evolutionary Computation, vol. 25, no. 2, pp. 234-246, April 2021, doi: [10.1109/TEVC.2020.3020046](https://ieeexplore.ieee.org/document/9179777).
 
 If you use MODAct in your research, we would appreciate a citation.
 
@@ -28,7 +28,7 @@ and then run:
 
 ```bash
 pip install -r requirements.txt
-python setup.py install
+pip install .
 ```
 
 ## Usage
