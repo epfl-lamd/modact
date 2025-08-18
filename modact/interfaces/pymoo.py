@@ -5,9 +5,7 @@ import modact.problems as pb
 
 
 class PymopProblem(ElementwiseProblem):
-
     def __init__(self, function, **kwargs):
-
         if isinstance(function, pb.Problem):
             self.fct = function
         else:

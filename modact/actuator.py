@@ -27,8 +27,10 @@ class Actuator(object):
             disp = comp.disp
             sign = np.sign(disp) if disp != 0 else 1
             # move coordinates to edge
-            last_position.dot(translation_matrix([0., 0., sign*last_height/2]),
-                              out=last_position)
+            last_position.dot(
+                translation_matrix([0.0, 0.0, sign * last_height / 2]),
+                out=last_position,
+            )
             last_height = comp.height
             mesh = comp.mesh(last_position, groups)
             components.extend(mesh)
@@ -61,7 +63,8 @@ class Actuator(object):
 
         in_conditions = [
             OperatingCondition(cond.speed * i_tot, 0, cond.V, cond.imax)
-            for cond in conditions]
+            for cond in conditions
+        ]
         return in_conditions
 
     def get_speed_torque(self, in_conditions, target=False):
@@ -79,12 +82,12 @@ class Actuator(object):
                 if next_op.torque <= 0:
                     # No torque available
                     # Use small amount for numerical reasons
-                    next_op.torque = 1.e-6
+                    next_op.torque = 1.0e-6
 
             if target and next_op.torque > target[i].torque:
                 # Output torque is higher than required torque
                 # Scale down all torques
-                alpha = next_op.torque/target[i].torque
+                alpha = next_op.torque / target[i].torque
                 next_op.torque /= alpha
                 # Correct OPs for constraints
                 for j in range(len(op_per_comp)):
@@ -96,8 +99,9 @@ class Actuator(object):
         return out_conditions, op_per_comp
 
     def gear_constraints(self, op_per_comp):
-        gear_idx = [i for i, comp in enumerate(self.components)
-                    if isinstance(comp, GearPair)]
+        gear_idx = [
+            i for i, comp in enumerate(self.components) if isinstance(comp, GearPair)
+        ]
         if not gear_idx:
             return np.zeros((0, 0)), np.zeros((0, 0, 0))
         n_gears = len(gear_idx)
@@ -107,12 +111,14 @@ class Actuator(object):
         for i, idx in enumerate(gear_idx):
             comp = self.components[idx]
             conditions = op_per_comp[idx]
-            kinematic[i, :] = (comp.interference, comp.contact_ratio,
-                               *comp.specific_speed)
+            kinematic[i, :] = (
+                comp.interference,
+                comp.contact_ratio,
+                *comp.specific_speed,
+            )
             for j, cond in enumerate(conditions):
-                resistance[i, j, :] = (*comp.security_h(cond),
-                                       *comp.security_f(cond))
-        
+                resistance[i, j, :] = (*comp.security_h(cond), *comp.security_f(cond))
+
         return kinematic, resistance
 
     def cost(self, with_hull=False):
@@ -120,9 +126,9 @@ class Actuator(object):
         if with_hull:
             _, _, space = self.mesh
             hull_area = space.convex_hull.area
-            body_volume = hull_area*1.5  # 1.5 mm thickness
-            pom = get_material('POM')
-            cost_hull = body_volume/1e9 * pom.rho * pom.cost
+            body_volume = hull_area * 1.5  # 1.5 mm thickness
+            pom = get_material("POM")
+            cost_hull = body_volume / 1e9 * pom.rho * pom.cost
             comp_cost.append(cost_hull)
         return comp_cost
 
@@ -132,4 +138,4 @@ class Actuator(object):
         for i, m in enumerate(meshes):
             cm.add_object(i, m)
         _, names = cm.in_collision_internal(return_names=True)
-        return len(names)/len(space.faces)
+        return len(names) / len(space.faces)

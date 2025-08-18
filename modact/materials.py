@@ -4,6 +4,7 @@ import attr
 @attr.s(auto_attribs=True, slots=True)
 class Material(object):
     "Class to store material properties"
+
     name: str
     E: float
     rho: float
@@ -14,22 +15,22 @@ class Material(object):
 
 
 material_data = {
-    'steel': {
-        'E': 210e9,
-        'nu': 0.3,
-        'sigma_h_lim': 400e6,
-        'sigma_f_lim': 200e6,
-        'cost': 0.4,
-        'rho': 7800.
+    "steel": {
+        "E": 210e9,
+        "nu": 0.3,
+        "sigma_h_lim": 400e6,
+        "sigma_f_lim": 200e6,
+        "cost": 0.4,
+        "rho": 7800.0,
     },
-    'POM': {
-        'E': 2.85e9,
-        'nu': 0.44,
-        'cost': 2.20,
-        'rho': 1400,
-        'sigma_f_lim': 90.e6,
-        'sigma_h_lim': 90.e6
-    }
+    "POM": {
+        "E": 2.85e9,
+        "nu": 0.44,
+        "cost": 2.20,
+        "rho": 1400,
+        "sigma_f_lim": 90.0e6,
+        "sigma_h_lim": 90.0e6,
+    },
 }
 
 

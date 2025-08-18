@@ -93,6 +93,8 @@ ENV/
 # VSCode project settings
 .vscode
 
+.DS_Store
+
 npz
 
 examples/old

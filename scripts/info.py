@@ -3,6 +3,7 @@ Get basic information for a given problem.
 
 $ python scripts/info.py cs3
 """
+
 import sys
 
 import modact.problems as pb

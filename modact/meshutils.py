@@ -24,12 +24,11 @@ def merge_meshes(meshes):
     new_faces = np.vstack(faces_list)
     new_vertices = np.vstack([m.vertices for m in meshes])
 
-    result = trimesh.Trimesh(vertices=new_vertices,
-                             faces=new_faces,
-                             face_normals=new_normals,
-                             process=False)
+    result = trimesh.Trimesh(
+        vertices=new_vertices, faces=new_faces, face_normals=new_normals, process=False
+    )
     result._cache.id_set()
 
-    result.metadata['face_sources'] = np.concatenate(face_sources)
+    result.metadata["face_sources"] = np.concatenate(face_sources)
 
     return result

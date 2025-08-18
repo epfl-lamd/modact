@@ -49,3 +49,9 @@ addopts = [
 [tool.setuptools_scm]
 version_scheme = "post-release"
 local_scheme = "node-and-date"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-cov>=4.1.0",
+]
