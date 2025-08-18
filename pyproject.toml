@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel", "pytest-runner", "setuptools-scm>=8"]
+requires = ["setuptools>=61.0", "wheel", "setuptools-scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -35,8 +35,9 @@ requires-python = ">=3.8"
 "Source" = "https://github.com/epfl-lamd/modact/"
 "Home" = "https://github.com/epfl-lamd/modact/"
 
-[tool.setuptools]
-packages = ["modact"]
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["modact*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
